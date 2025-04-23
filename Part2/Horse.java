@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.util.ArrayList;
 
 public class Horse {
     private String name;
@@ -19,6 +20,10 @@ public class Horse {
     private int races;
     private int wins;
     private double BestTime;
+    private double averageSpeed;
+    private int falls;
+    private ArrayList<RaceResults> raceHistory;
+
 
     public Horse(String name, String breed, String color, String symbol, String saddle, String coatColor, String horseShoe){
         this.name = name;
@@ -28,6 +33,7 @@ public class Horse {
         this.saddle = saddle;
         this.coatColor = coatColor;
         this.horseShoe = horseShoe;
+        this.raceHistory = new ArrayList<>();
 
         InitializeAttributes();
 
@@ -163,7 +169,7 @@ public class Horse {
         this.horseShoe = horseShoe;
     }
 
-    
+
     public int getSpeed() {
         return speed;
     }
@@ -188,5 +194,22 @@ public class Horse {
     public void setConfidence(int confidence) {
         this.confidence = confidence;
     }
-    
+    public int getWins() { 
+        return wins; 
+    }
+    public double getAverageSpeed() { 
+        return averageSpeed; 
+    }
+    public double getBestTime() { 
+        return BestTime; 
+    }
+    public int getFalls() { 
+        return falls; 
+    }
+    public int getRaces(){
+        return races;
+    }
+    public ArrayList<RaceResults> getRaceHistory() { 
+        return raceHistory; 
+    }
 }
