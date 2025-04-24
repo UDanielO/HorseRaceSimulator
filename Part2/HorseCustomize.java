@@ -1,9 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 
-
-
-
 public class HorseCustomize extends JPanel{
     private JTextField horseNameField;
     private JComboBox<String> horseBreedComboBox;
