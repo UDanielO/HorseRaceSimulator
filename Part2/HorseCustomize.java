@@ -9,8 +9,10 @@ public class HorseCustomize extends JPanel{
     private JPanel horsePreviewPanel;
     private JComboBox<String> saddleComboBox;
     private JComboBox<String> horseShoeComboBox;
+    private MainWindow mainWindow;
     
-    public HorseCustomize(){
+    public HorseCustomize(MainWindow mainWindow) {
+        this.mainWindow = mainWindow;
         setLayout(new BorderLayout());
 
         // Create control panel for horse settings
@@ -86,6 +88,28 @@ public class HorseCustomize extends JPanel{
         gbc.anchor = GridBagConstraints.CENTER;
         configPanel.add(createHorseButton, gbc);
 
+        createHorseButton.addActionListener(_ -> {
+            String name = horseNameField.getText();
+            if (name == null || name.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter a horse name!");
+                return;
+            }
+            
+            String breed = (String) horseBreedComboBox.getSelectedItem();
+            String coatColor = (String) horseColorComboBox.getSelectedItem();
+            String symbol = (String) horseSyComboBox.getSelectedItem();
+            String saddle = (String) saddleComboBox.getSelectedItem();
+            String horseShoe = (String) horseShoeComboBox.getSelectedItem();
+            
+            Horse newHorse = new Horse(name, breed, coatColor, symbol, saddle, coatColor, horseShoe);
+            mainWindow.addHorse(newHorse);
+            // Get the MainWindow reference
+            Window window = SwingUtilities.getWindowAncestor(this);
+            if (window instanceof MainWindow) {
+                ((MainWindow) window).addHorse(newHorse);
+                JOptionPane.showMessageDialog(this, "Horse created successfully!");
+            }
+        });
         // Horse Preview Panel
         horsePreviewPanel = new JPanel(){
             @Override
@@ -201,15 +225,5 @@ public class HorseCustomize extends JPanel{
                 return Color.BLACK; // Default color
         }
     }
-public static void main(String[] args) {
-    SwingUtilities.invokeLater(() -> {
-        JFrame frame = new JFrame("Horse Customizer");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setContentPane(new HorseCustomize());
-        frame.pack();
-        frame.setLocationRelativeTo(null);
-        frame.setVisible(true);
-    });
-}
 }
 

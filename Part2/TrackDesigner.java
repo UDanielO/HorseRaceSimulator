@@ -68,6 +68,22 @@ public class TrackDesigner extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         JButton saveButton = new JButton("Save Track");
         controlPanel.add(saveButton, gbc);
+
+        saveButton.addActionListener(_ -> {
+            int lanes = (Integer) laneCountSpinner.getValue();
+            int length = Integer.parseInt(trackLengthField.getText());
+            String shape = (String) trackShapeComboBox.getSelectedItem();
+            String weather = (String) weatherConditionComboBox.getSelectedItem();
+            
+            Track newTrack = new Track(lanes, length, shape, weather);
+            
+            // Get the MainWindow reference
+            Window window = SwingUtilities.getWindowAncestor(this);
+            if (window instanceof MainWindow) {
+                ((MainWindow) window).updareTrack(newTrack);
+                JOptionPane.showMessageDialog(this, "Track saved successfully!");
+            }
+        });
         
         // Track preview panel
         trackPreviewPanel = new JPanel() {

@@ -458,7 +458,7 @@ public class RacePanel extends JPanel {
             }
             
             if(horseFallen.get(horseName)){
-                RaceResults raceResult = new RaceResults(date, 0, 0, trackName, true);
+                RaceResults raceResult = new RaceResults(horseName, 0, 0, true, trackName);
                 horse.getRaceHistory().add(raceResult);
             }else if(horseFinishTimes.containsKey(horseName)){
                 int position = 1;
@@ -470,7 +470,7 @@ public class RacePanel extends JPanel {
                     }
                 }
                 double timeInSeconds = FinishTime / 1000.0;
-                RaceResults raceResult = new RaceResults(date, position, timeInSeconds, trackName, false);
+                RaceResults raceResult = new RaceResults(horseName, position, timeInSeconds, false, trackName);
                 horse.getRaceHistory().add(raceResult);
 
                 boolean won = (position == 1);

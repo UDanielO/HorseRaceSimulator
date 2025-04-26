@@ -100,9 +100,9 @@ public class StatisticsPanel extends JPanel {
                 horse.getName(),
                 horse.getRaces(),
                 horse.getWins(),
-                calculateWinPercentage(horse),
                 formatSpeed(horse.getAverageSpeed()),
                 formatTime(horse.getBestTime()),
+                calculateWinPercentage(horse) + "%",
                 horse.getFalls()
             };
             tableModel.addRow(rowData);

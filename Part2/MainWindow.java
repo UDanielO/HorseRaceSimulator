@@ -9,12 +9,12 @@ public class MainWindow extends JFrame {
     private Track currentTrack;
     private RacePanel racePanel;
     private StatisticsPanel statisticsPanel;
+    private BettingPanel bettingPanel;
     
     public MainWindow() {
 
         // Initialize the horse list and track
         horses = new ArrayList<>();
-
         // Create default track
         currentTrack = new Track(4, 1000, "Oval", "Dry");
 
@@ -31,7 +31,7 @@ public class MainWindow extends JFrame {
         TrackDesigner trackDesigner = new TrackDesigner();
 
         // Horse Customization tab
-        HorseCustomize horseCustomize = new HorseCustomize();
+        HorseCustomize horseCustomize = new HorseCustomize(this);
 
         // Statistics tab
         statisticsPanel = new StatisticsPanel(horses);
@@ -39,12 +39,15 @@ public class MainWindow extends JFrame {
         //Race panel
         racePanel = new RacePanel(horses, currentTrack);
 
+        // Betting panel
+        bettingPanel = new BettingPanel(horses, currentTrack);
         
         // Create and add panels for each tab
         tabbedPane.addTab("Track Design", trackDesigner);
         tabbedPane.addTab("Horse Customization", horseCustomize);
         tabbedPane.addTab("Race", racePanel);
         tabbedPane.addTab("Statistics", statisticsPanel);
+        tabbedPane.addTab("Betting", bettingPanel);
         
         // Add action listeners to buttons
         tabbedPane.addChangeListener(_ ->{
@@ -88,6 +91,9 @@ public class MainWindow extends JFrame {
         if(statisticsPanel != null){
             statisticsPanel = new StatisticsPanel(horses);
             tabbedPane.setComponentAt(3, statisticsPanel);
+        }
+        if(bettingPanel != null) {
+            bettingPanel.setHorses(horses);
         }
     }
 }

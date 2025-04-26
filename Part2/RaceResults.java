@@ -1,4 +1,8 @@
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class RaceResults {
+    private String horseName;
     private String date;
     private int position;
     private double time;
@@ -6,12 +10,13 @@ public class RaceResults {
     private boolean fallen;
     
     // Constructor
-    public RaceResults(String date, int position, double time, String trackName, boolean fallen) {
-        this.date = date;
+    public RaceResults(String horseName, int position, double time, boolean fallen, String trackName) {
+        this.horseName = horseName;
         this.position = position;
         this.time = time;
         this.trackName = trackName;
         this.fallen = fallen;
+        this.date = new SimpleDateFormat("yyyy-MM-dd").format(new Date());
     }
     
     // Getter methods
@@ -49,9 +54,17 @@ public class RaceResults {
     
     @Override
     public String toString() {
-        return date + " - Position: " + position + 
-               ", Time: " + time + "s, Track: " + trackName + 
-               (fallen ? " (FELL)" : "");
+        String result = date + ": " + horseName + " - Position: " + position + ", Time: " + formatTime(time);
+        if (fallen) {
+            result += " (FELL)";
+        }
+        return result;
+    }
+
+    private String formatTime(double time) {
+        int minutes = (int) (time / 60);
+        double seconds = time % 60;
+        return String.format("%d:%05.2f", minutes, seconds);
     }
 }
 
