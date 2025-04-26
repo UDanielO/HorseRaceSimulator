@@ -43,6 +43,10 @@ public class Horse {
 
     }
 
+    public Horse(char c, String string, double d) {
+        //TODO Auto-generated constructor stub
+    }
+
     private void InitializeAttributes() {
         //Set default values for horse attributes
         speed = 50;
