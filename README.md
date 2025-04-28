@@ -16,9 +16,9 @@ Ensure to have the following installed to run:
 
 ## Set up instructions
 HOW TO INSTALL
-1. You need to clone the repository to your local machine by running this command: git clone https://github.com/yourusername/horse-racing-simulator.git
+1. You need to clone the repository to your local machine by running this command: git clone https://github.com/UDanielO/HorseRacingSimulator.git
 
-2. Navigate to the project directory: cd horse-racing-simulator
+2. Navigate to the project directory: cd HorseRacingSimulator
 
 3. Compile tha java files: javac *.java
 
